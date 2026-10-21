@@ -1,0 +1,36 @@
+Crear el package.json, fundamental en cualquier proyecto de node.js
+$: npm init -y
+
+Instalamos dependencias claves que nos ayudaran a ejecutar TS
+$: npm install -D typescript tsx @types/node
+
+Configura el tsconfig.json (Basicamente el archivo de configuracion de typescript)
+$: npx tsc --init
+o 
+pueden crearlo a mano y pegar:
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
+
+En el package.json revisen de tener (o creen) los sig scripts:
+"scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+ }
+
+Estos comandos sirven para trabajar con nuestra aplicacion:
+
+$: npm run dev -> Ejecuta el codigo en modo watch 
+$: npm run build -> Transforma el TS a JS
+$: npm run start -> Indica a node que ejecute el JS (siempre hacer una ves buildeada la app)
