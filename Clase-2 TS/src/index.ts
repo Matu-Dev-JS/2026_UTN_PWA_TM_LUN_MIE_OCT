@@ -6,18 +6,18 @@ let role: 'admin' | 'user' | 'owner' = 'user'
 
 
 //type nos permite definir tipos de datos custom
-type Role = 'admin' | 'user' | 'owner' 
+type Role = 'admin' | 'user' | 'owner'
 
 let userRole: Role = 'user'
 
 //void hace referencia a que la funcion NO tiene retorno, o que su retorno no es importante
-function saludar (nombre: string): void{
+function saludar(nombre: string): void {
     console.log('Hola ' + nombre + '!')
 }
 
 //saludar('pepe')
 
-function sumar (a: number, b: number): number{
+function sumar(a: number, b: number): number {
     return a + b
 }
 
@@ -42,13 +42,13 @@ interface User {
     id: number
 }
 
-let usuario : User = {
+let usuario: User = {
     nombre: 'pepe',
     email: 'pepe@gmail.com',
     id: 2
 }
 
-let usuario_2 : User = {
+let usuario_2: User = {
     nombre: 'juan',
     email: 'juan@gmail.com',
     id: 22
@@ -59,12 +59,12 @@ let nombres: string[] = ['pepe', 'juan', 'jose']
 let notas: number[] = [1, 2, 3]
 let usuario_en_array: [string, number] = ['pepe', 50]
 const usuarios: User[] = [
-    {nombre: 'pepe', email: 'pepe@gmail.com', id: 10}, 
-    {nombre: 'jose', email: 'jose@gmail.com', id: 41}, 
-    {nombre: 'maria', email: 'maria@gmail.com', id: 40}
+    { nombre: 'pepe', email: 'pepe@gmail.com', id: 10 },
+    { nombre: 'jose', email: 'jose@gmail.com', id: 41 },
+    { nombre: 'maria', email: 'maria@gmail.com', id: 40 }
 ]
 
-usuarios.push({nombre: 'jose', email: 'jose@gmail.com', id: 44})
+usuarios.push({ nombre: 'jose', email: 'jose@gmail.com', id: 44 })
 
 
 
@@ -94,3 +94,24 @@ Crear la funcion:
         ]
         Crear la funcion obtenerMails(usuarios) y debe devolver una lista con cada mail del usuario
 */
+
+let porcentaje_iva: number = 21
+interface Result {
+    iva: number,
+    precio_final: number,
+    precio_original: number,
+    porcentaje_iva: number
+}
+function calcularIva(precio_original: number): Result {
+    const iva = (precio_original * porcentaje_iva) / 100;
+    const precio_final = precio_original + iva
+    return {
+        iva,
+        precio_final,
+        precio_original,
+        porcentaje_iva,
+    }
+}
+
+console.log(calcularIva(100))
+
