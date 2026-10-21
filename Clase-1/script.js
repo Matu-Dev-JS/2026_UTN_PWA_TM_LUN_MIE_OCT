@@ -140,7 +140,6 @@ function formatUsers(users) {
     return my_users;
 }
 
-
 function getUserById(users, user_id) {
     for (const user of users) {
         if (user._id === user_id) {
@@ -149,9 +148,6 @@ function getUserById(users, user_id) {
     }
     return null
 }
-
-
-console.log(getUserById(usuarios, 1))
 
 function formatUser(user) {
     return {
@@ -164,4 +160,35 @@ function formatUser(user) {
         "profile_isDark": user.profile.isDark
     };
 }
-console.log(formatUser(usuarios[1]))
+
+function getUsersByRole(users, role_id) {
+    /* 
+    filter es un metodo avanzado de array
+    Sirve para hacer filtros en un array
+    Vos le pasas una callback que se ejecutara por cada elemento del array:
+        Si la callback devuelve:
+            true: el usuario se agrega a la lista filtrada
+            false: el usuario no se agrega a la lista filtrada
+    Filter finalmente te retorna la lista filtrada
+    */
+    return users.filter(
+        function(user) {
+            return user.role._id === role_id;
+        }
+    );
+}
+
+function deleteUserById(users, user_id) {
+    const index = users.findIndex(
+        function(user) {
+            return user._id === user_id;
+        }
+    );
+    // Si no lo encuentra, findIndex devuelve -1
+    if (index === -1) {
+        return false;
+    }
+    // .splice() elimina 1 elemento a partir de la posición encontrada
+    users.splice(index, 1);
+    return true;
+}
