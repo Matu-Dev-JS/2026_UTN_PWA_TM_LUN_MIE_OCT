@@ -77,7 +77,12 @@ Definir los metodos en la clase empleado:
 
 
 type Seniority = 'entry' | 'junior' | 'mid' | 'senior' | 'mid-senior'
-const seniorities = [
+
+interface SeniorityConfig {
+    seniority_label: Seniority,
+    increase_percentage: number
+}
+const seniorities: SeniorityConfig[] = [
     {
         seniority_label: 'entry',
         increase_percentage : 0
@@ -99,6 +104,7 @@ const seniorities = [
         increase_percentage: 50
     },
 ]
+
 
 /* 
 aumentarSeniority()
@@ -142,14 +148,26 @@ class Empleado {
         this.salario = this.salario + aumento
     }
 
-   /*  aumentarSeniority(): void{
-        const indiceSeniorityActual = seniorities.indexOf(this.seniority)
-
-        if (indiceSeniorityActual === seniorities.length - 1) {
+    aumentarSeniority(): void{
+        //Verificamos si estamos en el ultimo nivel posible
+        if(this.seniority === seniorities[seniorities.length - 1].seniority_label){
             return
         }
-        this.seniority = seniorities[indiceSeniorityActual + 1]
-    } */
+
+        for(let seniority of seniorities){
+            
+            if(this.seniority === seniority.seniority_label){
+       
+                const indice_seniority = seniorities.indexOf(seniority)
+                console.log(indice_seniority)
+                const seniority_siguente: SeniorityConfig = seniorities[indice_seniority + 1]
+                this.seniority = seniority_siguente.seniority_label
+                this.aumentarSueldo(seniority_siguente.increase_percentage)
+            }
+        }
+
+       
+    }
     
 }
 
@@ -185,7 +203,7 @@ empleado_1.cobrar()
 empleado_1.cobrar()
 empleado_1.cambiarEmail('jose@gmail.com')
 empleado_1.aumentarSueldo(10)
-/* empleado_1.aumentarSeniority() */
+empleado_1.aumentarSeniority()
 
 console.log(empleado_1)
 console.log(empleado_1.saludar())
