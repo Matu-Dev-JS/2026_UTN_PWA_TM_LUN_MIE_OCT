@@ -95,7 +95,19 @@ Crear la funcion:
         Crear la funcion obtenerMails(usuarios) y debe devolver una lista con cada mail del usuario
 */
 
-let porcentaje_iva: number = 21
+
+function obtenerMails(usuarios: User[]): string[] {
+    const mailList: string[]= [];
+    for (const usuario of usuarios) {
+        mailList.push(usuario.email) 
+    } 
+    return mailList
+}
+
+console.log(obtenerMails(usuarios))
+
+
+/* let porcentaje_iva: number = 21
 interface Result {
     iva: number,
     precio_final: number,
@@ -115,3 +127,4 @@ function calcularIva(precio_original: number): Result {
 
 console.log(calcularIva(100))
 
+ */
