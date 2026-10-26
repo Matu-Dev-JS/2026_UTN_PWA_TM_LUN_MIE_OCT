@@ -61,16 +61,58 @@ discount -> siempre inicia en 0
 Crear 3 productos
 */
 
-type Seniority = 'entry' | 'junior' | 'mid' | 'senior'
 
-const seniorities: Seniority[]= ['entry', 'junior', 'mid', 'senior']
+/* 
+Agregar propiedades:
+    - seniority: 'entry' | 'junior' | 'mid' | 'senior'
+    - puesto
+
+Definir los metodos en la clase empleado:
+    - aumentarSueldo(porcentaje_aumento) Aumenta el salario por ese porcentaje
+    - aumentarSeniority () 
+        - Segun el seniority actual debe subir una categoria mas 'entry' => 'junior' => 'mid' => 'senior'. 
+        - Si es senior se queda como esta.
+
+*/
+
+
+type Seniority = 'entry' | 'junior' | 'mid' | 'senior' | 'mid-senior'
+const seniorities = [
+    {
+        seniority_label: 'entry',
+        increase_percentage : 0
+    },
+    {
+        seniority_label: 'junior',
+        increase_percentage: 5
+    },
+    {
+        seniority_label: 'mid',
+        increase_percentage: 10
+    },
+    {
+        seniority_label: 'mid-senior',
+        increase_percentage: 20
+    },
+    {
+        seniority_label: 'senior',
+        increase_percentage: 50
+    },
+]
+
+/* 
+aumentarSeniority()
+    Aumentar tu seniority actual (salvo que seas senior, ahi se hace nada)
+    Aumentar tu salario por el por el porcentaje de aumento del seniority definido en el array seniorities
+*/
+
 class Empleado {
     nombre: string
     id: number
     email: string
     dinero: number
     salario: number
-    seniority:  Seniority
+    seniority: Seniority
     puesto: string
     constructor(nombre: string, email: string, id: number, salario: number, seniority: Seniority, puesto: string) {
         this.nombre = nombre
@@ -92,36 +134,24 @@ class Empleado {
 
     cambiarEmail(nuevo_mail: string): void {
         this.email = nuevo_mail
+        this.aumentarSueldo(100)
     }
 
     aumentarSueldo(porcentaje_aumento: number): void {
         let aumento: number = this.salario * (porcentaje_aumento / 100)
         this.salario = this.salario + aumento
     }
+
+   /*  aumentarSeniority(): void{
+        const indiceSeniorityActual = seniorities.indexOf(this.seniority)
+
+        if (indiceSeniorityActual === seniorities.length - 1) {
+            return
+        }
+        this.seniority = seniorities[indiceSeniorityActual + 1]
+    } */
+    
 }
-
-
-const empleado_1 = new Empleado('pepe', 'pepe@gmail.com', 1, 5000, 'entry', 'Programador front-end')
-
-empleado_1.cobrar()
-empleado_1.cobrar()
-empleado_1.cambiarEmail('jose@gmail.com')
-empleado_1.aumentarSueldo(10)
-console.log(empleado_1)
-console.log(empleado_1.saludar())
-
-/* 
-Agregar propiedades:
-    - seniority: 'entry' | 'junior' | 'mid' | 'senior'
-    - puesto
-
-Definir los metodos en la clase empleado:
-    - aumentarSueldo(porcentaje_aumento) Aumenta el salario por ese porcentaje
-    - aumentarSeniority () 
-        - Segun el seniority actual debe subir una categoria mas 'entry' => 'junior' => 'mid' => 'senior'. 
-        - Si es senior se queda como esta.
-
-*/
 
 
 
@@ -146,3 +176,16 @@ Definir los metodos en la clase empleado:
 
 const producto_1 = new Product(1, 'Tv Samsung 50"', "Televisión Samsung de 50 pulgadas", 20, 150000) */
 /* console.log(producto_1) */
+
+
+
+const empleado_1 = new Empleado('pepe', 'pepe@gmail.com', 1, 5000, 'entry', 'Programador front-end')
+
+empleado_1.cobrar()
+empleado_1.cobrar()
+empleado_1.cambiarEmail('jose@gmail.com')
+empleado_1.aumentarSueldo(10)
+/* empleado_1.aumentarSeniority() */
+
+console.log(empleado_1)
+console.log(empleado_1.saludar())
