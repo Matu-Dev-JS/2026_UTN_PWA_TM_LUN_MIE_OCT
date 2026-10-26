@@ -48,3 +48,15 @@ Objeto =  resultado de usar usar el molde y crear algo
 Instancia = el momento donde se usa el molde 
 this = en contexto de la funcion constructora es una referencia a la instancia que se esta creando
 */
+
+/* 
+Crear la clase Product que tenga las propiedades
+id
+title
+description
+stock
+price
+discount -> siempre inicia en 0
+
+Crear 3 productos
+*/
