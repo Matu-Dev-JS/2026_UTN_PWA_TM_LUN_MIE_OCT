@@ -61,40 +61,52 @@ discount -> siempre inicia en 0
 Crear 3 productos
 */
 
+type Seniority = 'entry' | 'junior' | 'mid' | 'senior'
 
+const seniorities: Seniority[]= ['entry', 'junior', 'mid', 'senior']
 class Empleado {
     nombre: string
     id: number
     email: string
     dinero: number
     salario: number
-    constructor(nombre: string, email: string, id: number, salario: number) {
+    seniority:  Seniority
+    puesto: string
+    constructor(nombre: string, email: string, id: number, salario: number, seniority: Seniority, puesto: string) {
         this.nombre = nombre
         this.email = email
         this.id = id
         this.salario = salario
         this.dinero = 0
+        this.seniority = seniority
+        this.puesto = puesto
     }
 
-    cobrar(): void{
+    cobrar(): void {
         this.dinero = this.dinero + this.salario
     }
 
-    saludar(): string{
+    saludar(): string {
         return 'Hola a todos, mi nombre es ' + this.nombre + '!'
     }
 
-    cambiarEmail(nuevo_mail: string): void{
+    cambiarEmail(nuevo_mail: string): void {
         this.email = nuevo_mail
+    }
+
+    aumentarSueldo(porcentaje_aumento: number): void {
+        let aumento: number = this.salario * (porcentaje_aumento / 100)
+        this.salario = this.salario + aumento
     }
 }
 
 
-const empleado_1 = new Empleado('pepe', 'pepe@gmail.com', 1, 5000)
+const empleado_1 = new Empleado('pepe', 'pepe@gmail.com', 1, 5000, 'entry', 'Programador front-end')
 
 empleado_1.cobrar()
 empleado_1.cobrar()
 empleado_1.cambiarEmail('jose@gmail.com')
+empleado_1.aumentarSueldo(10)
 console.log(empleado_1)
 console.log(empleado_1.saludar())
 
@@ -105,17 +117,16 @@ Agregar propiedades:
 
 Definir los metodos en la clase empleado:
     - aumentarSueldo(porcentaje_aumento) Aumenta el salario por ese porcentaje
-    - aumentarSeniority () Segun el seniority actual debe subir una categoria mas 'entry' => 'junior' => 'mid' => 'senior'. Si es senior se queda como esta.
-    
+    - aumentarSeniority () 
+        - Segun el seniority actual debe subir una categoria mas 'entry' => 'junior' => 'mid' => 'senior'. 
+        - Si es senior se queda como esta.
+
 */
 
 
 
 
-
-
-
-class Product {
+/* class Product {
     id: number
     title: string
     description: string
@@ -133,5 +144,5 @@ class Product {
 }
 
 
-const producto_1 = new Product(1, 'Tv Samsung 50"', "Televisión Samsung de 50 pulgadas", 20, 150000)
+const producto_1 = new Product(1, 'Tv Samsung 50"', "Televisión Samsung de 50 pulgadas", 20, 150000) */
 /* console.log(producto_1) */
