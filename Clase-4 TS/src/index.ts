@@ -49,11 +49,11 @@ Crear la clase Product:
     - categories string[] EJ: ['tecnologia', 'hogar']
 
     Metodo:
-        agregarCategoria(nueva_categoria)
+        agregarCategoria(nueva_categoria) (hecho)
             agrega la categoria, si no existe previamente
             devuelve boolean indicando si la operacion se pudo hacer o no
         
-        eliminarCategoria(categoria)
+        eliminarCategoria(categoria) (nuevo)
             eliminar en caso de que exista
             devuelve boolean indicando si la operacion se pudo hacer o no
 
@@ -68,7 +68,7 @@ Crear la clase ProductManager:
         - getById(product_id)
             devuelve el producto buscado por id o null si no existe
 
-        - filtrarPorCategoria(categorias_filtradas) 
+        - filtrarPorCategoria(categorias_filtradas) (nuevo)
             Recibe un array de categorias y debe devolver a los productos que tengan esas categorias
             Protip: recuerden que con .includes pueden saber si cierto elemento esta en otro array
             const nombres = ['pepe', 'juan', 'maria']
@@ -102,6 +102,15 @@ class Product {
         this.description = description
         this.stock = stock
         this.categories = categories
+    }
+
+    addCategory(new_category: string): boolean{
+        const already_exist_category = this.categories.includes(new_category)
+        if(already_exist_category){
+            return false
+        }
+        this.categories.push(new_category)
+        return true
     }
 }
 
