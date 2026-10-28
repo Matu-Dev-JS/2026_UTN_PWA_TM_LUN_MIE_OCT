@@ -48,6 +48,15 @@ Crear la clase Product:
     - stock
     - categories string[] EJ: ['tecnologia', 'hogar']
 
+    Metodo:
+        agregarCategoria(nueva_categoria)
+            agrega la categoria, si no existe previamente
+            devuelve boolean indicando si la operacion se pudo hacer o no
+        
+        eliminarCategoria(categoria)
+            eliminar en caso de que exista
+            devuelve boolean indicando si la operacion se pudo hacer o no
+
 Crear la clase ProductManager:
     - products: Product[]
     - id_counter: number = 0
@@ -58,6 +67,15 @@ Crear la clase ProductManager:
         
         - getById(product_id)
             devuelve el producto buscado por id o null si no existe
+
+        - filtrarPorCategoria(categorias_filtradas) 
+            Recibe un array de categorias y debe devolver a los productos que tengan esas categorias
+            Protip: recuerden que con .includes pueden saber si cierto elemento esta en otro array
+            const nombres = ['pepe', 'juan', 'maria']
+            console.log(nombres.includes('juan'))//true
+            console.log(nombres.includes('juanito'))//false
+
+
 */
 
 class Product {
@@ -137,3 +155,8 @@ const new_product_id = productManager.create(
     ['electro']
 )
 console.log(new_product_id)
+
+
+/* const nombres = ['pepe', 'juan', 'maria']
+
+console.log(nombres.includes('juanito')) */
