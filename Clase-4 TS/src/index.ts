@@ -57,3 +57,30 @@ Crear la clase ProductManager:
         - getById(product_id)
             devuelve el producto buscado por id o null si no existe
 */
+
+class Product {
+    id: number
+    title: string
+    price: number
+    percentage_discount: number
+    description: string
+    stock: number
+    categories: string[]
+    constructor(
+        id: number, 
+        title: string, 
+        price: number, 
+        percentage_discount: number, 
+        description: string, 
+        stock: number, 
+        categories: string[]
+    ) {
+        this.id = id
+        this.title = title
+        this.price = price
+        this.percentage_discount = percentage_discount
+        this.description = description
+        this.stock = stock
+        this.categories = categories
+    }
+}
