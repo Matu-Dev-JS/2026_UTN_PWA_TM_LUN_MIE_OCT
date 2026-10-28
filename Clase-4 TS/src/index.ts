@@ -2,38 +2,40 @@ class User {
     id: number
     name: string
     email: string
-    constructor(id: number, name: string, email: string){
+    constructor(id: number, name: string, email: string) {
         this.id = id
         this.name = name
         this.email = email
     }
 }
 
+
+
 //Con esta clase generamos un objeto que maneje la lista de usuarios
 class UsersManager {
     users: User[]
     id_counter: number
-    constructor (){
+    constructor() {
         this.id_counter = 0
         this.users = []
     }
 
     //Creamos un metodo que permite agregar un usuario a la lista de usuarios
-    create(name: string, email: string): void{
+    create(name: string, email: string): void {
         const new_user = new User(this.id_counter, name, email)
         this.id_counter = this.id_counter + 1
         this.users.push(new_user)
     }
 }
 
-const userManager = new UsersManager()
+/* const userManager = new UsersManager()
 
 console.log(userManager)
 
 userManager.create('pepe', 'pepe@gmail.com')
 userManager.create('maria', 'maria@gmail.com')
 
-console.log(userManager)
+console.log(userManager) */
 
 
 /* 
@@ -67,12 +69,12 @@ class Product {
     stock: number
     categories: string[]
     constructor(
-        id: number, 
-        title: string, 
-        price: number, 
-        percentage_discount: number, 
-        description: string, 
-        stock: number, 
+        id: number,
+        title: string,
+        price: number,
+        percentage_discount: number,
+        description: string,
+        stock: number,
         categories: string[]
     ) {
         this.id = id
@@ -84,3 +86,54 @@ class Product {
         this.categories = categories
     }
 }
+
+class ProductManager {
+    products: Product[]
+    id_counter: number
+    constructor() {
+        this.id_counter = 0
+        this.products = []
+    }
+
+    create(
+        title: string,
+        price: number,
+        percentage_discount: number,
+        description: string,
+        stock: number,
+        categories: string[]
+    ): number {
+        const new_product = new Product(
+            this.id_counter,
+            title,
+            price,
+            percentage_discount,
+            description,
+            stock,
+            categories
+        )
+        this.id_counter = this.id_counter + 1
+        this.products.push(new_product)
+        return new_product.id
+    }
+
+    getById(product_id: number): Product | null {
+        for(const product of this.products){
+            if(product.id === product_id){
+                return product;
+            }
+        }
+        return null
+    }
+}
+
+const productManager = new ProductManager()
+const new_product_id = productManager.create(
+    'tv samsung',
+    5000,
+    10,
+    'tv muy buena',
+    40,
+    ['electro']
+)
+console.log(new_product_id)
