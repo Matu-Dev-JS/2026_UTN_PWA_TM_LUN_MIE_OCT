@@ -75,6 +75,9 @@ Crear la clase ProductManager:
             console.log(nombres.includes('juan'))//true
             console.log(nombres.includes('juanito'))//false
 
+            productManager.filtrarPorCategoria(['electro', 'navidad'])
+                Devolver a los productos que tengan la categoria electro Y navidad
+
 
 */
 
@@ -112,7 +115,24 @@ class Product {
         this.categories.push(new_category)
         return true
     }
+
+    deleteCategory( category: string ): boolean{
+        const already_exist_category = this.categories.includes(category)
+        if(already_exist_category){
+            const index_category = this.categories.indexOf(category)
+            this.categories.splice(index_category, 1)
+            return true
+        }
+        return false
+    }
 }
+
+
+const producto_test = new Product(1, 'test', 200, 10, 'test', 20, ['electro', 'hogar'])
+producto_test.addCategory('electro')
+producto_test.deleteCategory('test')
+
+console.log(producto_test)
 
 class ProductManager {
     products: Product[]
@@ -152,6 +172,25 @@ class ProductManager {
         }
         return null
     }
+
+    filterByCategories(categories_to_filter: string[]): Product[]{
+        const products_filtered: Product[] = []
+
+        for(const product of this.products){
+            let valid_product = true
+            for(const category of categories_to_filter){
+                if(! toLowerCaseAll(product.categories).includes(category.toLowerCase()) ){
+                    valid_product = false
+                    break
+                }
+            }
+            if(valid_product){
+                products_filtered.push(product)
+            }
+        }
+
+        return products_filtered
+    }
 }
 
 const productManager = new ProductManager()
@@ -163,9 +202,50 @@ const new_product_id = productManager.create(
     40,
     ['electro']
 )
-console.log(new_product_id)
+productManager.create(
+    'tv samsung 2',
+    5000,
+    10,
+    'tv muy buena',
+    40,
+    ['navidad']
+)
+
+productManager.create(
+    'tv samsung 3',
+    5000,
+    10,
+    'tv muy buena',
+    40,
+    ['navidad', 'electro']
+)
+
 
 
 /* const nombres = ['pepe', 'juan', 'maria']
 
 console.log(nombres.includes('juanito')) */
+
+/* 
+Primero crear una lista vacia de resultados
+
+Recorrer la lista de productos
+    Por cada producto recorrer la lista de categorias filtradas
+        Por cada categoria checkear si esa categoria esta incluida en las categorias del producto
+            Si esto es verdadero sumar producto a la lista vacia de resultados
+
+Por cada categoria de las categorias
+    categoria.toLowerCase()
+    sumar resultado a un array
+
+*/
+
+function toLowerCaseAll(strings: string[]): string[]{
+    const stringsLowerCase = []
+    for(let string of strings){
+        stringsLowerCase.push(string.toLowerCase())
+    }
+    return stringsLowerCase
+}
+
+console.log(productManager.filterByCategories(['electro', 'navidad']))
