@@ -1,0 +1,64 @@
+enum rol_admin_user_owner_t {
+	admin
+	user
+	owner
+}
+
+Table Usuarios [headercolor: #b8b8b8] {
+	id int [ pk, increment, not null ]
+	nombre varchar(30) [ not null ]
+	email varchar(50) [ not null ]
+	password varchar(255) [ not null ]
+	fecha_creacion timestamp [ not null ]
+}
+
+Table Espacios_Trabajo [headercolor: #175e7a] {
+	id int [ pk, increment, not null ]
+	titulo varchar(50) [ not null ]
+	descripcion text(1000)
+	fecha_creacion timestamp [ not null ]
+}
+
+Table Membresias [headercolor: #175e7a] {
+	id int [ pk, increment, not null ]
+	fk_id_user int [ not null ]
+	fk_id_espacio int [ not null ]
+	rol rol_admin_user_owner_t [ not null, default: 'user' ]
+	fecha_creacion timestamp [ not null ]
+}
+
+Table Canales [headercolor: #175e7a] {
+	id int [ pk, increment, not null ]
+	fk_id_espacio int [ not null ]
+	titulo varchar(30) [ not null ]
+	descripcion text(1000)
+	fecha_creacion timestamp [ not null ]
+}
+
+Table Mensajes [headercolor: #175e7a] {
+	id int [ pk, increment, not null ]
+	fk_id_canal int [ not null ]
+	fk_id_membresia int [ not null ]
+	contenido text(3000) [ not null ]
+	fecha_creacion timestamp
+}
+
+Ref fk_Membresia_fk_id_espacio_Espacio_Trabajo {
+	Membresias.fk_id_espacio > Espacios_Trabajo.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Membresia_fk_id_user_Usuarios {
+	Membresias.fk_id_user > Usuarios.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Canales_fk_id_espacio_Espacios_Trabajo {
+	Canales.fk_id_espacio > Espacios_Trabajo.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Mensajes_fk_id_canal_Canales {
+	Mensajes.fk_id_canal > Canales.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Mensajes_fk_id_membresia_Membresias {
+	Mensajes.fk_id_membresia > Membresias.id [ delete: no action, update: no action ]
+}

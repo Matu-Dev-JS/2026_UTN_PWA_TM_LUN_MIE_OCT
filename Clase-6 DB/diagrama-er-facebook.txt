@@ -1,0 +1,61 @@
+Table Usuarios [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	nombre varchar(30)
+	password varchar(255)
+	email varchar(50)
+	fecha_creacion timestamp
+}
+
+Table publicaciones [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	titulo varchar(50)
+	contenido text(1000)
+	fecha_cracion timestamp
+	fk_id_creador integer
+}
+
+Table Archivos_adjuntos [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	url varchar(255)
+	fecha_creacion timestamp
+	fk_id_publicacion integer
+}
+
+Table comentarios [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	fk_id_publicacion integer
+	contenido text(1000)
+	fecha_creacion timestamp
+	fk_id_creador integer
+}
+
+Table likes [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	fk_id_user integer
+	fk_id_publicacion integer
+	fecha_creacion timestamp
+}
+
+Ref fk_comentarios_fk_id_creador_Usuarios {
+	comentarios.fk_id_creador > Usuarios.id [ delete: no action, update: no action ]
+}
+
+Ref fk_publicaciones_fk_id_creador_Usuarios {
+	publicaciones.fk_id_creador > Usuarios.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Archivos_adjuntos_fk_id_publicacion_publicaciones {
+	Archivos_adjuntos.fk_id_publicacion > publicaciones.id [ delete: no action, update: no action ]
+}
+
+Ref fk_comentarios_fk_id_publicacion_publicaciones {
+	comentarios.fk_id_publicacion > publicaciones.id [ delete: no action, update: no action ]
+}
+
+Ref fk_likes_fk_id_publicacion_publicaciones {
+	likes.fk_id_publicacion > publicaciones.id [ delete: no action, update: no action ]
+}
+
+Ref fk_likes_fk_id_user_Usuarios {
+	likes.fk_id_user > Usuarios.id [ delete: no action, update: no action ]
+}
