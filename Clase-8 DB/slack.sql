@@ -14,3 +14,13 @@ CREATE TABLE espacios_de_trabajo (
     descripcion TEXT(1000),
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
+
+CREATE TABLE membresias (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    rol ENUM('owner', 'admin', 'user') DEFAULT 'user',
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fk_id_usuario INT NOT NULL,
+    fk_id_espacio_trabajo INT NOT NULL,
+    CONSTRAINT fk_membresias_usuarios FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id),
+    CONSTRAINT fk_membresias_espacios_trabajo FOREIGN KEY (fk_id_espacio_trabajo) REFERENCES espacios_de_trabajo(id)
+)
