@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Usuario from "./models/user.model.js";
 import connectMongoDB from "./config/mongoDB.config.js";
 import { actualizarUsuarioPorId, buscarUsuarioPorId, eliminarUsuarioPorId, obtenerUsuarios } from "./repository/user.repository.js";
-import { crearEspacio } from "./repository/espacioTrabajo.repository.js";
+import { actualizarEspacioPorId, buscarEspacioPorId, crearEspacio, eliminarEspacioPorId, obtenerEspacios } from "./repository/espacioTrabajo.repository.js";
 
 
 
@@ -14,20 +14,15 @@ connectMongoDB()
 
 async function probar (){
 
-    crearEspacio('test', 'test')
-    //const result = await buscarUsuarioPorId('6af480703ec606312417019e')
+   //actualizarEspacioPorId('6afb015915f3242d2218086d', {titulo: 'test 2'})
 
-    //const result = await eliminarUsuarioPorId('6af480703ec606312417019e')
+   //const result = await obtenerEspacios()
 
-    /*  const result = await actualizarUsuarioPorId(
-        '6af47ee7aa29bf23da565322',
-        {
-            nombre: 'pepesito'
-        }
-    ) */
+    //const result = await buscarEspacioPorId('6afb015915f3242d2218086d')
 
-    //const result = await obtenerUsuarios()
-    //console.log(result)
+   //eliminarEspacioPorId('6afb015915f3242d2218086d')
+
+   //console.log(result)
 }
 
 probar()
