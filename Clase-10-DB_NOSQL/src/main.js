@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Usuario from "./models/user.model.js";
 import connectMongoDB from "./config/mongoDB.config.js";
 import { actualizarUsuarioPorId, buscarUsuarioPorId, eliminarUsuarioPorId, obtenerUsuarios } from "./repository/user.repository.js";
+import { crearEspacio } from "./repository/espacioTrabajo.repository.js";
 
 
 
@@ -12,6 +13,8 @@ connectMongoDB()
 
 
 async function probar (){
+
+    crearEspacio('test', 'test')
     //const result = await buscarUsuarioPorId('6af480703ec606312417019e')
 
     //const result = await eliminarUsuarioPorId('6af480703ec606312417019e')
@@ -24,7 +27,7 @@ async function probar (){
     ) */
 
     //const result = await obtenerUsuarios()
-    console.log(result)
+    //console.log(result)
 }
 
 probar()
