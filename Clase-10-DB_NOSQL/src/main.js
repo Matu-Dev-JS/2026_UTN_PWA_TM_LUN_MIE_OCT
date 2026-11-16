@@ -24,7 +24,8 @@ async function probar (){
 probar()
 
 /* 
-HECHO Crear un nuevo Model de mongoose llamado EspacioTrabajo que tendra las propiedades
+HECHO 
+Crear un nuevo Model de mongoose llamado EspacioTrabajo que tendra las propiedades
     - titulo : String
     - descripcion : String
     - fecha_creacion : Date
@@ -44,4 +45,9 @@ Crear un nuevo Model de mongoose llamada Canal que tendra las propiedades
 Crear el canal.repository.js donde estara la funcion:
     crearCanal(titulo, descipcion, id_espacio)
     obtenerCanalPorId(canal_id) traera en su respuesta el nombre del espacio de trabajo asociado (PROTIP: Aca es donde va el populate)
+
+
+TAREA
+
+Crear el modelo de Mensajes y su repository con CRUD
     */
