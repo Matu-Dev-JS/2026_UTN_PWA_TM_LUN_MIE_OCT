@@ -4,6 +4,7 @@ import connectMongoDB from "./config/mongoDB.config.js";
 import { actualizarUsuarioPorId, buscarUsuarioPorId, eliminarUsuarioPorId, obtenerUsuarios } from "./repository/user.repository.js";
 import { actualizarEspacioPorId, buscarEspacioPorId, crearEspacio, eliminarEspacioPorId, obtenerEspacios } from "./repository/espacioTrabajo.repository.js";
 import { crearMembresia, obtenerMembresiasPorEspacioTrabajo } from "./repository/membresia.repository.js";
+import { crearCanal, obtenerCanalPorId } from "./repository/canal.repository.js";
 
 
 
@@ -14,10 +15,10 @@ connectMongoDB()
 
 
 async function probar (){
+    const result = await obtenerCanalPorId('6afb113499ea7a3c88fdd27a')
+    console.log(result)
 
-   //crearMembresia('dueño', '6af47ee7aa29bf23da565322', '6afb0955a2556b0aff4e0d74')
-    const result = await obtenerMembresiasPorEspacioTrabajo('6afb0955a2556b0aff4e0d74')
-   console.log(result)
+
 }
 
 probar()
