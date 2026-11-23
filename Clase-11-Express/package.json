@@ -12,6 +12,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "express": "^5.3.0",
     "mongoose": "^9.12.1"
   }
 }
