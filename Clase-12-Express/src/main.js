@@ -94,6 +94,42 @@ app.post(
 )
 
 
+app.get(
+    '/products/:product_id',
+    (request, response) => {
+        const {product_id} = request.params
+
+        if(!product_id && product_id < 0){
+            return response.send({
+                ok: false,
+                message: "product_id debe ser un numero positivo"
+            })
+        }
+
+
+        for(const product of products){
+            if(Number(product.id) === Number(product_id)){
+                return response.send(
+                    {
+                        ok: true,
+                        message: 'Producto por id obtenido correctamente',
+                        data: {
+                            product_detail: product
+                        }
+                    }
+                )
+            }
+        }
+
+        return response.send(
+            {
+                ok: false,
+                message: "Producto por id no encontrado"
+            }
+        )
+    }
+)
+
 /* 
 En cliente la validacion es OPCIONAL
 En el servidor la validacion es SIEMPRE OBLIGATORIA
